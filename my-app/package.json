@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://CedricNtwari.github.io/portfolio-react",
+  "homepage": "https://CedricNtwari.github.io/portfolio-react/my-app",
   "dependencies": {
     "16": "^0.0.2",
     "@testing-library/jest-dom": "^5.14.1",
