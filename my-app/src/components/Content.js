@@ -1,40 +1,30 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import css from './css/Content.module.css'
 import { savedPosts } from '../posts.json'
 import PostItem from './PostItem'
 import Loader from './Loader'
 
-export default class Content extends Component {
-  constructor(props) {
-    super(props)
+function Content() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [posts, setPosts] = useState([])
 
-    this.state = {
-      isLoaded: false,
-      posts: [],
-    }
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     setTimeout(() => {
-      this.setState({
-        isLoaded: true,
-        posts: savedPosts,
-      })
+      setIsLoaded(true)
+      setPosts(savedPosts)
     }, 2000)
-  }
+  }, [])
 
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const search = event.target.value
-    const filteredPosts = savedPosts.filter((post) => {
-      return post.title.toLowerCase().includes(search.toLowerCase())
-    })
-    this.setState({
-      posts: filteredPosts,
-    })
+    const filteredPosts = savedPosts.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase()),
+    )
+    setPosts(filteredPosts)
   }
 
-  render() {
-    return (
+  return (
+    <div>
       <div>
         <div className={css.TitleBar}>
           <form>
@@ -44,15 +34,17 @@ export default class Content extends Component {
               id="search"
               name="search"
               placeholder="By Author"
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
           </form>
-          <h4>Posts found: {this.state.posts.length}</h4>
+          <h4>Posts found: {posts.length}</h4>
         </div>
         <div className={css.Searchresults}>
-          {this.state.isLoaded ? <PostItem savedPosts={this.state.posts} /> : <Loader />}
+          {isLoaded ? <PostItem savedPosts={posts} /> : <Loader />}
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Content
