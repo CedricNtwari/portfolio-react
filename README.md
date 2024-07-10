@@ -10,7 +10,7 @@ Through this project, you will learn how to:
 
 - Create a Navigation Menu.
 - Develop a User Sign In form displaying different content based on user interactions.
-- Load images from an API and display them with accompanying title, author, and description text.
+- Load images from the Pixabay API and display them with accompanying title, author, and description text.
 - Implement an Interactive Search Field.
 
 ## Getting Started

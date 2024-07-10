@@ -5,13 +5,13 @@ export default function PostItem(props) {
   return (
     <div>
       {props.savedPosts.map((post) => {
-        const { title, name, image, description } = post
+        const { id, type, user, webformatURL, tags } = post
         return (
-          <div key={title} className={css.SearchResults}>
-            <div>{title}</div>
-            <div>{name}</div>
-            <img src={image} alt={title} className={css.PostImage} />
-            <div>{description}</div>
+          <div className={css.SearchItem} key={id}>
+            <p>{type}</p>
+            <p>{user}</p>
+            <img src={webformatURL} alt="random" />
+            <p>{tags}</p>
           </div>
         )
       })}
